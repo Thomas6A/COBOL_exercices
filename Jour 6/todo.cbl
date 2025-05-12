@@ -8,8 +8,8 @@
        
        WORKING-STORAGE SECTION.
        
-      *Variable WS-VAR est un entier d'un chiffre initialiser à 0 
-       01  WS-VAR       PIC 9(1).
+      *Variable WS-MENU est un entier d'un chiffre initialiser à 0 
+       01  WS-MENU       PIC 9(1).
       *Les variables WS-TASK sont des alphanumériques de 100 caractères
        01  WS-TASK-1    PIC X(100).
        01  WS-TASK-2    PIC X(100).
@@ -28,18 +28,18 @@
     
       *Boucle permettant à l'utilisateur d'avoir un menu jusqu'au moment
       *    ou il quitte le programme
-       PERFORM  UNTIL WS-VAR = 4
+       PERFORM  UNTIL WS-MENU = 4
 
-      *Affichage du menu à l'utilisateur et saisi de WS-VAR
+      *Affichage du menu à l'utilisateur et saisi de WS-MENU
            DISPLAY "Choisissez une option"
            DISPLAY "1- Ajouter une tâche"
            DISPLAY "2- Afficher les tâches"
            DISPLAY "3- Supprimer une tâche"
            DISPLAY "4- Quitter le programme"
-           ACCEPT WS-VAR
+           ACCEPT WS-MENU
 
-      *Condition vérifiant les différents cas de WS-VAR
-           EVALUATE WS-VAR
+      *Condition vérifiant les différents cas de WS-MENU
+           EVALUATE WS-MENU
 
                WHEN 1
       *Appel du paragraphe 0100-CHOICE-1         

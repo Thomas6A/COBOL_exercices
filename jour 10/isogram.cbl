@@ -25,14 +25,14 @@
        ACCEPT WS-WORD.
 
       *Boucle s'arrètant quand le mot n'est pas un isogramme ou quand
-      *l'index est égal à 11
-       PERFORM VARYING WS-INDEX FROM 1 BY 1 UNTIL WS-INDEX = 11 
+      *l'index est égal à 10
+       PERFORM VARYING WS-INDEX FROM 1 BY 1 UNTIL WS-INDEX = 10 
            OR WS-ISOGRAM = 0
 
       *Boucle s'arrètant quand le mot n'est pas un isogramme ou quand
       *l'index 2 est égal à 11
-           PERFORM VARYING WS-INDEX-2 FROM 1 BY 1 UNTIL WS-INDEX-2 = 11
-               OR WS-ISOGRAM = 0
+           PERFORM VARYING WS-INDEX-2 FROM WS-INDEX BY 1 
+               UNTIL WS-INDEX-2 = 11 OR WS-ISOGRAM = 0
 
       *Condition vérifiant que les index ne sont pas au même endroit et
       *que la lettre soit la même et qu'il ne soit pas un espace
@@ -40,7 +40,7 @@
                    AND WS-WORD(WS-INDEX:1) = WS-WORD(WS-INDEX-2:1) 
                    AND WS-WORD(WS-INDEX:1) NOT EQUAL SPACE
 
-      *Si oui on associe 0 à WS-ISOGRAMM
+      *Si oui on associe 0 à WS-ISOGRAM
                    MOVE 0 TO WS-ISOGRAM
 
                END-IF 
