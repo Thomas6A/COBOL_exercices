@@ -8,7 +8,7 @@
 
        FILE-CONTROL.
 
-      *Variable FICHIER-PERSONNES assigner au fichier personnes.txt
+      *Alias FICHIER-PERSONNES assigner au fichier personnes.txt
       *Fichier lu ligne par ligne
        SELECT FICHIER-PERSONNES ASSIGN TO "personnes.txt"
            ORGANIZATION IS LINE SEQUENTIAL.
@@ -90,7 +90,8 @@
 
       *Ajout de Y dans le boolean à la fin du fichier, permettant de
       *quitter la boucle
-               AT END MOVE 'Y' TO WS-FIN-FICHIER
+               AT END 
+                   MOVE 'Y' TO WS-FIN-FICHIER
       *Sinon ajout de chaque élément de la ligne dans le fichier         
                NOT AT END
                    MOVE F-NOM TO WS-NOM(WS-INDEX)
