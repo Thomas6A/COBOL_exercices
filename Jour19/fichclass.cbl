@@ -52,6 +52,7 @@
        77 WS-EOF                        PIC X                VALUE "F".
       *Variable du nombre maximal d'élèves dans une classe 
        77 WS-MAX-ELEVE                  PIC 9.
+       77 WS-INPUT                      PIC X(9).
 
 
       ******************************************************************
@@ -147,6 +148,34 @@
                END-PERFORM
       
            END-PERFORM.
+
+      *Affichage de l'instruction et saisi de l'utilisateur
+           DISPLAY "Entrez un nom à cherché".
+           ACCEPT WS-INPUT.
+
+      *Boucle itérant sur les classes pour la recherche
+           PERFORM VARYING WS-INDEX-CLASSE FROM 1 BY 1 
+               UNTIL WS-INDEX-CLASSE > 2
+      
+      *Boucle itérant sur les élèves pour l'affichage s'arrêtant si
+      *on dépasse le nombre max d'élèves ou si il n'y a pas d'élèves
+               PERFORM VARYING WS-INDEX-ELEVE FROM 1 BY 1 
+                   UNTIL WS-INDEX-ELEVE > WS-MAX-ELEVE
+                   OR WS-NOM-ELEVE(WS-INDEX-CLASSE,WS-INDEX-ELEVE) 
+                   EQUAL SPACES
+      
+      *Condition vérifiant si la saisi est égal à un nom et afficher
+      *le prénom si la condition est vérifiée
+                   IF WS-NOM-ELEVE(WS-INDEX-CLASSE,WS-INDEX-ELEVE)
+                       EQUAL WS-INPUT
+                      DISPLAY "Prénom : "
+                        WS-PRENOM-ELEVE(WS-INDEX-CLASSE,WS-INDEX-ELEVE)
+                   END-IF    
+      
+               END-PERFORM
+      
+           END-PERFORM.     
+           
 
            STOP RUN.     
 
