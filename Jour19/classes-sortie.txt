@@ -1,0 +1,12 @@
+CM1 adazd          zadzad
+CM1 adzad          azdazd
+CM1 aza            aza
+CM1 noa            peeae
+CM1 nom            prenom
+CM1 nom            prenoma
+CM2 adzad          zerzf
+CM2 rvz            zrvzrvzr
+CM2 vre            v
+CM2 vrz            re
+CM2 vz             zvzr
+CM2 zrte           zefz
