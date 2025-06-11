@@ -31,6 +31,7 @@
                10 WS-ID-USER    PIC 9(10).
                10 WS-NOM        PIC X(50).
                10 WS-EMAIL      PIC X(50).
+               10 WS-CODE       PIC 9.
 
        77 WS-INDEX        PIC 9    VALUE 0.
        77 WS-MAX-TAB      PIC 9.
@@ -58,14 +59,22 @@
 
            CLOSE FICHIER-USER.
 
-           OPEN OUTPUT FICHIER-LOG.
-
            PERFORM VARYING WS-INDEX FROM 1 BY 1 
                UNTIL WS-INDEX > WS-MAX-TAB
 
                CALL "validate" USING WS-USER(WS-INDEX)
 
-               IF RETURN-CODE = 1
+               MOVE RETURN-CODE TO WS-CODE(WS-INDEX)
+
+
+           END-PERFORM.    
+
+           OPEN OUTPUT FICHIER-LOG.
+
+           PERFORM VARYING WS-INDEX FROM 1 BY 1 
+               UNTIL WS-INDEX > WS-MAX-TAB
+
+               IF WS-CODE(WS-INDEX) = 1
 
                    STRING "[Ligne "
                           WS-INDEX
@@ -76,6 +85,16 @@
 
                    WRITE F-LOG
                    
+               ELSE IF WS-CODE(WS-INDEX) = 2   
+
+                   STRING "[Ligne "
+                          WS-INDEX
+                          "] Erreur : id invalide "
+                          WS-EMAIL(WS-INDEX)
+                          INTO F-LOG
+                   END-STRING
+
+                   WRITE F-LOG
 
                END-IF
 

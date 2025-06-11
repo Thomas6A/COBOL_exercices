@@ -20,6 +20,8 @@
 
            IF WS-COUNT NOT EQUAL 1
               GOBACK RETURNING 1
+           ELSE IF ID-USER NOT NUMERIC
+              GOBACK RETURNING 2 
            ELSE 
               GOBACK RETURNING 0 
            END-IF.
